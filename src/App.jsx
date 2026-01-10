@@ -72,37 +72,30 @@ function App() {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-logistics-blue via-blue-600 to-logistics-orange text-white py-20 md:py-32">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-br from-logistics-blue via-blue-600 to-logistics-orange text-white py-20 md:py-32 overflow-hidden">
+        {/* YouTube Video Background */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <iframe
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full min-w-full min-h-full object-cover"
+            src="https://www.youtube.com/embed/3nAmjOhIOAE?autoplay=1&mute=1&loop=1&playlist=3nAmjOhIOAE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+            title="Background Video"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            style={{ pointerEvents: 'none' }}
+          />
+          {/* Overlay - darker at top and bottom, transparent in middle for video */}
+          <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-logistics-blue/95 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-logistics-orange/95 to-transparent"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 -mt-8 md:-mt-12">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Welkom bij Logistics Management
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Ontdek de wereld van logistiek, supply chain management en efficiënte distributie
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="outline"
-                onClick={() => window.open('https://www.windesheim.nl/opleidingen/voltijd/bachelor/logistics-management', '_blank', 'noopener,noreferrer')}
-                className="border-white text-white hover:bg-white hover:text-logistics-blue"
-              >
-                Opleidingssite
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => scrollToSection('quiz')}
-                className="border-white text-white hover:bg-white hover:text-logistics-blue"
-              >
-                Doe de Profieltest
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => window.open('https://loevlogistiek.nl/', '_blank', 'noopener,noreferrer')}
-                className="border-white text-white hover:bg-white hover:text-logistics-blue"
-              >
-                Bezoek Loevlogistiek.nl
-              </Button>
+            {/* Title at the top */}
+            <div className="flex justify-center items-center mb-60 md:mb-[21rem]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold whitespace-nowrap">
+                Welkom bij Logistics Management
+              </h1>
             </div>
           </div>
         </div>
