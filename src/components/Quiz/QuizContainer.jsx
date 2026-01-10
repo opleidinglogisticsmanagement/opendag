@@ -70,7 +70,7 @@ const QuizContainer = () => {
           <h3 className="text-lg font-bold text-gray-800 mb-4 text-center">
             Welke beroepsprofielen zijn er?
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             {Object.entries(quizResults).map(([key, profile]) => (
               <Card key={key} className="hover:shadow-lg transition-shadow">
                 <div className="text-center mb-3">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import QuizContainer from './components/Quiz/QuizContainer';
@@ -13,10 +13,10 @@ import { introText } from './data/quizQuestions';
 function App() {
   const [activeGame, setActiveGame] = useState(null);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Offset in pixels
+      const offset = 80; // Offset in pixels for sticky header
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -25,7 +25,47 @@ function App() {
         behavior: 'smooth'
       });
     }
-  };
+  }, []);
+
+  // Handle hash navigation with offset for sticky header
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const sectionId = hash.substring(1); // Remove the #
+        setTimeout(() => {
+          scrollToSection(sectionId);
+        }, 100); // Small delay to ensure DOM is ready
+      }
+    };
+
+    // Handle initial hash on page load
+    if (window.location.hash) {
+      handleHashChange();
+    }
+
+    // Handle hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Handle clicks on hash links
+    const handleLinkClick = (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (link && link.getAttribute('href') !== '#') {
+        const href = link.getAttribute('href');
+        const sectionId = href.substring(1);
+        e.preventDefault();
+        window.history.pushState(null, '', href);
+        scrollToSection(sectionId);
+      }
+    };
+
+    document.addEventListener('click', handleLinkClick);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      document.removeEventListener('click', handleLinkClick);
+    };
+  }, [scrollToSection]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -47,7 +87,7 @@ function App() {
                 onClick={() => window.open('https://www.windesheim.nl/opleidingen/voltijd/bachelor/logistics-management', '_blank', 'noopener,noreferrer')}
                 className="border-white text-white hover:bg-white hover:text-logistics-blue"
               >
-                Meer Weten
+                Opleidingssite
               </Button>
               <Button 
                 variant="outline"
@@ -55,6 +95,13 @@ function App() {
                 className="border-white text-white hover:bg-white hover:text-logistics-blue"
               >
                 Doe de Profieltest
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => window.open('https://loevlogistiek.nl/', '_blank', 'noopener,noreferrer')}
+                className="border-white text-white hover:bg-white hover:text-logistics-blue"
+              >
+                Bezoek Loevlogistiek.nl
               </Button>
             </div>
           </div>

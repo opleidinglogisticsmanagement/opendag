@@ -35,7 +35,14 @@ const Footer = () => {
               >
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
+              <a 
+                href="https://loevlogistiek.nl/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Ik Loev campagne
+              </a>
             </div>
           </div>
         </div>
