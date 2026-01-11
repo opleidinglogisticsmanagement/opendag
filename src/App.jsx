@@ -176,45 +176,45 @@ function App() {
       </section>
 
       {/* Game Section */}
-      <section id="game" className="py-8 md:py-12 bg-logistics-light-orange">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">
+      <section id="game" className={`${!activeGame ? 'min-h-screen flex flex-col' : 'py-8 md:py-12'} bg-logistics-light-orange`}>
+        <div className={`container mx-auto px-4 ${!activeGame ? 'flex-1 flex flex-col justify-center' : ''}`}>
+          <h2 className={`text-3xl md:text-4xl font-bold text-center text-gray-800 ${!activeGame ? 'mb-4 md:mb-6' : 'mb-6'}`}>
             Speel de Game
           </h2>
           
           {!activeGame ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full" onClick={() => setActiveGame('packing')}>
-                <div className="text-6xl mb-4">📦</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Packing Game</h3>
-                <p className="text-gray-600 mb-4 flex-grow">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
+              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full max-h-[400px]" onClick={() => setActiveGame('packing')}>
+                <div className="text-5xl md:text-6xl mb-3">📦</div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Packing Game</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-3 flex-grow overflow-hidden">
                   Pak dozen efficiënt in een container. Test je ruimtelijk inzicht en optimalisatie skills!
                 </p>
                 <Button variant="primary" className="mt-auto">Speel Nu</Button>
               </Card>
 
-              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full" onClick={() => setActiveGame('sorter')}>
-                <div className="text-6xl mb-4">📋</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Sorteer Game</h3>
-                <p className="text-gray-600 mb-4 flex-grow">
+              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full max-h-[400px]" onClick={() => setActiveGame('sorter')}>
+                <div className="text-5xl md:text-6xl mb-3">📋</div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Sorteer Game</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-3 flex-grow overflow-hidden">
                   Test je snelheid en precisie! Sorteer pakketjes naar de juiste bestemming voordat de tijd op is. Hoe hoger je score, hoe beter je bent in logistieke besluitvorming onder druk.
                 </p>
                 <Button variant="primary" className="mt-auto">Speel Nu</Button>
               </Card>
 
-              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full" onClick={() => setActiveGame('flowfactory')}>
-                <div className="text-6xl mb-4">🏭</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Flow Factory</h3>
-                <p className="text-gray-600 mb-4 flex-grow">
+              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full max-h-[400px]" onClick={() => setActiveGame('flowfactory')}>
+                <div className="text-5xl md:text-6xl mb-3">🏭</div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Flow Factory</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-3 flex-grow overflow-hidden">
                   Houd de logistieke flow op gang tussen drie stations: Grondstoffen, Productie en Klant!
                 </p>
                 <Button variant="primary" className="mt-auto">Speel Nu</Button>
               </Card>
 
-              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full" onClick={() => setActiveGame('warehousewizard')}>
-                <div className="text-6xl mb-4">📦</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Warehouse Wizard</h3>
-                <p className="text-gray-600 mb-4 flex-grow">
+              <Card className="text-center cursor-pointer hover:shadow-2xl transition-shadow flex flex-col h-full max-h-[400px]" onClick={() => setActiveGame('warehousewizard')}>
+                <div className="text-5xl md:text-6xl mb-3">📦</div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Warehouse Wizard</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-3 flex-grow overflow-hidden">
                   Test je order picking skills! Klik de vakken in de juiste volgorde om orders zo snel mogelijk te verzamelen. Leer route-efficiëntie en pickingstrategie!
                 </p>
                 <Button variant="primary" className="mt-auto">Speel Nu</Button>

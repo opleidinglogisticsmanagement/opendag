@@ -73,9 +73,9 @@ const PackingGame = () => {
 
   if (!gameStarted) {
     return (
-      <Card className="max-w-2xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Packing Game</h2>
-        <p className="text-gray-600 mb-6">
+      <Card className="max-w-xl mx-auto text-center">
+        <h2 className="text-2xl font-bold text-gray-800 mb-3">Packing Game</h2>
+        <p className="text-gray-600 mb-4 text-sm">
           Pak de dozen zo efficiënt mogelijk in de container. Klik op een doos en dan op een plek in de container.
         </p>
         <Button onClick={startGame} variant="primary">
@@ -86,58 +86,61 @@ const PackingGame = () => {
   }
 
   return (
-    <Card className="max-w-4xl mx-auto">
-      <div className="flex justify-between items-center mb-4">
-        <div className="text-xl font-bold">
+    <Card className="max-w-3xl mx-auto">
+      <div className="flex justify-between items-center mb-3">
+        <div className="text-lg font-bold">
           Score: <span className="text-logistics-blue">{score}</span>
         </div>
-        <div className="text-xl font-bold">
+        <div className="text-lg font-bold">
           Tijd: <span className="text-logistics-orange">{timeLeft}s</span>
         </div>
       </div>
 
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-2">Te plaatsen dozen:</h3>
-        <div className="flex space-x-4">
-          {boxes.map((box) => (
-            <button
-              key={box.id}
-              onClick={() => setSelectedBox(box)}
-              className={`${box.color} p-4 rounded border-4 ${
-                selectedBox?.id === box.id ? 'border-logistics-blue' : 'border-transparent'
-              } hover:border-logistics-blue transition-all`}
-              style={{ width: `${box.width * 30}px`, height: `${box.height * 30}px` }}
-            >
-              <span className="text-white text-xs font-bold">{box.size}</span>
-            </button>
-          ))}
+      <div className="mb-3 flex gap-4 items-start">
+        <div className="flex-none" style={{ width: '200px' }}>
+          <h3 className="text-base font-semibold mb-2">Te plaatsen dozen:</h3>
+          <div className="flex flex-col space-y-3">
+            {boxes.map((box) => (
+              <button
+                key={box.id}
+                onClick={() => setSelectedBox(box)}
+                className={`${box.color} p-3 rounded border-2 ${
+                  selectedBox?.id === box.id ? 'border-logistics-blue' : 'border-transparent'
+                } hover:border-logistics-blue transition-all`}
+                style={{ width: `${box.width * 30}px`, height: `${box.height * 30}px` }}
+              >
+                <span className="text-white text-xs font-bold">{box.size}</span>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-2">Container:</h3>
-        <div className="grid gap-1 bg-gray-200 p-2 rounded" style={{ gridTemplateColumns: `repeat(${containerSize.width}, 1fr)` }}>
-          {Array.from({ length: containerSize.height * containerSize.width }).map((_, index) => {
-            const x = index % containerSize.width;
-            const y = Math.floor(index / containerSize.width);
-            const placedBox = container.find(
-              (b) =>
-                x >= b.x &&
-                x < b.x + b.width &&
-                y >= b.y &&
-                y < b.y + b.height
-            );
+        <div className="flex-1">
+          <h3 className="text-base font-semibold mb-2">Container:</h3>
+          <div className="grid gap-0.5 bg-gray-200 p-1.5 rounded" style={{ gridTemplateColumns: `repeat(${containerSize.width}, 1fr)`, width: 'fit-content' }}>
+            {Array.from({ length: containerSize.height * containerSize.width }).map((_, index) => {
+              const x = index % containerSize.width;
+              const y = Math.floor(index / containerSize.width);
+              const placedBox = container.find(
+                (b) =>
+                  x >= b.x &&
+                  x < b.x + b.width &&
+                  y >= b.y &&
+                  y < b.y + b.height
+              );
 
-            return (
-              <div
-                key={index}
-                onClick={() => handleCellClick(x, y)}
-                className={`aspect-square border border-gray-300 cursor-pointer hover:bg-gray-100 transition-colors ${
-                  placedBox ? `${placedBox.color} border-gray-500` : 'bg-white'
-                }`}
-              />
-            );
-          })}
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleCellClick(x, y)}
+                  className={`aspect-square border border-gray-300 cursor-pointer hover:bg-gray-100 transition-colors ${
+                    placedBox ? `${placedBox.color} border-gray-500` : 'bg-white'
+                  }`}
+                  style={{ width: '30px', height: '30px' }}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
 
